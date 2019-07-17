@@ -30,8 +30,7 @@ def process():
         credentials = flow.step2_exchange(code)
         string_creds = credentials.to_json()
         return {'creds': string_creds}
-    print body
-    return body
+    return ''
 
 def get_albums(api):
     all_songs = api.get_all_songs()
