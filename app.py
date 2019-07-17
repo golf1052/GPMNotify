@@ -18,7 +18,7 @@ def process():
             return {'url': url}
         elif endpoint == 'new_releases':
             api = Mobileclient()
-            credentials = oauth2client.client.OAuth2Credentials.from_json(json.dumps(body['creds']))
+            credentials = oauth2client.client.OAuth2Credentials.from_json(body['creds'])
             api._authtype = 'oauth'
             api.session.login(credentials)
             albums = get_albums(api)
@@ -28,8 +28,8 @@ def process():
         api = Mobileclient()
         flow = oauth2client.client.OAuth2WebServerFlow(**api._session_class.oauth._asdict())
         credentials = flow.step2_exchange(code)
-        j = json.loads(credentials.to_json())
-        return {'creds': j}
+        string_creds = credentials.to_json()
+        return {'creds': string_creds}
     print body
     return body
 
@@ -65,3 +65,6 @@ def get_albums(api):
 
 def create_simple_album_from_album(album):
     return {'albumId': album['albumId'], 'artist': album['artist'], 'name': album['name'], 'year': album['year']}
+
+if __name__ == '__main__':
+    app.run(debug=False, use_reloader=False)
