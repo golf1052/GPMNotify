@@ -33,7 +33,11 @@ def process():
     return ''
 
 def get_albums(api):
-    all_songs = api.get_all_songs()
+    albums = []
+    try:
+        all_songs = api.get_all_songs()
+    except:
+        return albums
     all_albums = set()
     for song in all_songs:
         if 'albumId' in song:
@@ -41,16 +45,21 @@ def get_albums(api):
     
     all_artists = set()
     for album_id in all_albums:
-        album = api.get_album_info(album_id, False)
+        try:
+            album = api.get_album_info(album_id, False)
+        except:
+            continue
         if 'artistId' in album:
             for artist_id in album['artistId']:
                 all_artists.add(artist_id)
         
     current_year = datetime.datetime.now().year
     album_id_map = {}
-    albums = []
     for artist_id in all_artists:
-        artist = api.get_artist_info(artist_id, max_top_tracks=0, max_rel_artist=0)
+        try:
+            artist = api.get_artist_info(artist_id, max_top_tracks=0, max_rel_artist=0)
+        except:
+            continue
         if 'albums' in artist:
             for album in artist['albums']:
                 if 'year' in album:
