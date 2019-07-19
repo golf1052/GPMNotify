@@ -17,7 +17,7 @@ def process():
             url = flow.step1_get_authorize_url()
             return {'url': url}
         elif endpoint == 'new_releases':
-            api = Mobileclient()
+            api = Mobileclient(validate=False)
             credentials = oauth2client.client.OAuth2Credentials.from_json(body['creds'])
             api._authtype = 'oauth'
             api.session.login(credentials)
