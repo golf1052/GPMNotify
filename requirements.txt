@@ -15,7 +15,7 @@ future==0.17.1
 futures==3.3.0
 gmusicapi==12.1.1
 gpsoauth==0.4.1
-httplib2==0.13.0
+httplib2==0.18.0
 idna==2.8
 isort==4.3.21
 itsdangerous==1.1.0
