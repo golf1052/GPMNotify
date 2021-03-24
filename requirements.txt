@@ -36,7 +36,7 @@ pycryptodomex==3.8.2
 pylint==1.9.4
 python-dateutil==2.8.0
 requests==2.22.0
-rsa==4.0
+rsa==4.1
 singledispatch==3.4.0.3
 six==1.12.0
 soupsieve==1.9.2
